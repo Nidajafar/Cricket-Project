@@ -39,7 +39,9 @@ app.use('/uploads', express.static(uploadDir));
 
 // Connect Database
 connectDB();
-
+app.get("/",(req,res)=>{
+    res.send("cricket api is running")
+})
 // 🔗 API Routes
 app.use('/api/users', userRoutes);
 app.use('/api/history', historyRoutes);
