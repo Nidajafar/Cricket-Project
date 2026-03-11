@@ -1,5 +1,5 @@
 import express from 'express';
-import player from '../models/player';
+import player from '../models/player.js';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs'; // File delete karne ke liye (Optional but good)
