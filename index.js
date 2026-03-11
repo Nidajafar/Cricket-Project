@@ -14,7 +14,8 @@ import historyRoutes from './src/routes/historyRoutes.js';
 import teamRoutes from './src/routes/teamRoutes.js';
 import matchRoutes from './src/routes/matchRoutes.js'; 
 import statsRoutes from './src/routes/statsRoutes.js';
-import playerRoutes from "./src/routes/playerRoutes.js";
+import router from './src/routes/playerRoutes.js';
+
 
 dotenv.config();
 
@@ -48,7 +49,7 @@ app.use('/api/history', historyRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/matches', matchRoutes);
 app.use('/api/stats', statsRoutes); 
-app.use('/api/players', playerRoutes);
+app.use('/api/players', router);
 console.log("Email User:", process.env.EMAIL_USER);
 console.log("Email Pass:", process.env.EMAIL_PASS ? "Password Found" : "Password Missing");
 
