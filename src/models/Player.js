@@ -10,4 +10,6 @@ const playerSchema = new mongoose.Schema({
     photo: { type: String, default: '' }
 });
 
-export default mongoose.model('Player', playerSchema);
+
+const player= mongoose.model('Player', playerSchema);
+export default player;
