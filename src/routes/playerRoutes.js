@@ -1,8 +1,9 @@
 import express from 'express';
-import player from '../models/player.js';
+
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs'; // File delete karne ke liye (Optional but good)
+import Player from '../models/mPlayer.js';
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ const upload = multer({ storage: storage });
 // 1. Get all players
 router.get('/', async (req, res) => {
     try {
-        const players = await player.find();
+        const players = await Player.find();
         res.json(players);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -40,7 +41,7 @@ router.post('/add', upload.single('photo'), async (req, res) => {
     // Photo path set karna
     const photoPath = req.file ? `http://localhost:5000/uploads/${req.file.filename}` : '';
 
-    const newRecord = new player({
+    const newRecord = new Player({
       name,
       role,
       matches,
@@ -69,7 +70,7 @@ router.put('/:id', upload.single('photo'), async (req, res) => {
       updateData.photo = `http://localhost:5000/uploads/${req.file.filename}`;
     }
 
-    const updatedPlayer = await player.findByIdAndUpdate(req.params.id, updateData, { new: true });
+    const updatedPlayer = await Player.findByIdAndUpdate(req.params.id, updateData, { new: true });
     
     if (!updatedPlayer) return res.status(404).json({ message: "Player not found" });
     res.json(updatedPlayer);
@@ -81,7 +82,7 @@ router.put('/:id', upload.single('photo'), async (req, res) => {
 // 4. Delete Player (Final Fix for Delete Error)
 router.delete('/:id', async (req, res) => {
   try {
-    const deleted = await player.findByIdAndDelete(req.params.id);
+    const deleted = await Player.findByIdAndDelete(req.params.id);
     
     if (!deleted) {
         return res.status(404).json({ message: "Player not found in database" });
