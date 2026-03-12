@@ -14,7 +14,7 @@ import historyRoutes from './src/routes/historyRoutes.js';
 import teamRoutes from './src/routes/teamRoutes.js';
 import matchRoutes from './src/routes/matchRoutes.js'; 
 import statsRoutes from './src/routes/statsRoutes.js';
-import router from './src/routes/PlayerRoutes.js';
+import router from './src/routes/playerRoutes.js';
 
 dotenv.config();
 
